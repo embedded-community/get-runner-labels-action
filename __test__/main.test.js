@@ -5,8 +5,8 @@
  * Specifically, the inputs listed in `action.yml` should be set as environment
  * variables following the pattern `INPUT_<INPUT_NAME>`.
  */
-const core = require('@actions/core')
-const main = require('../src/main')
+const core = require("@actions/core");
+const main = require("../src/main");
 
 /*
 // Mock the GitHub Actions core library

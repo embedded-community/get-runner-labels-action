@@ -13,7 +13,7 @@ function filterRunnerByName(runners, runnerName) {
 
 async function run() {
   try {
-    const token = core.getInput('github-token');
+    const token = core.getInput("github-token");
     const org = process.env.GITHUB_REPOSITORY_OWNER;
     const runnerName = process.env.RUNNER_NAME;
     const repo = process.env.GITHUB_REPOSITORY;
@@ -25,7 +25,8 @@ async function run() {
     // get repo runners
     const repoRunners = await octokit.paginate(
       octokit.actions.listSelfHostedRunnersForRepo,
-      { owner: org, repo, } );
+      { owner: org, repo },
+    );
     // get org runners
     const orgRunners = await octokit.paginate(
       octokit.actions.listSelfHostedRunnersForOrg,

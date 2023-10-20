@@ -9,5 +9,5 @@ outputs:
   labels:
     description: 'Labels of the runner'
 runs:
-  using: 'node18'
+  using: 'node20'
   main: 'dist/index.js'
