@@ -1,0 +1,13 @@
+name: 'Runner Label Resolver'
+description: 'Resolve labels of an organization-level runner'
+author: 'Jussi Vatjus-Anttila'
+inputs:
+  github-token:
+    description: 'GitHub token'
+    required: true
+outputs:
+  labels:
+    description: 'Labels of the runner'
+runs:
+  using: 'node18'
+  main: 'dist/index.js'
