@@ -29624,6 +29624,10 @@ async function run() {
     const includeOrgRunners = core.getInput("include-org-runners");
     const runnerName = process.env.RUNNER_NAME;
     const orgRepo = process.env.GITHUB_REPOSITORY; // in the form of owner/repo
+    // ensure we have orgRepo
+    if (!orgRepo) {
+      throw Error("GITHUB_REPOSITORY is not set");
+    }
     const [org, repo] = orgRepo.split("/");
     core.debug(
       `org: ${org}, repo: ${repo}, Runner name: ${runnerName}, token: ${token}`,

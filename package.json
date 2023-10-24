@@ -6,8 +6,8 @@
   "scripts": {
     "bundle": "npm run format:write && npm run package",
     "ci-test": "node --test",
-    "format:write": "prettier --write src/*.js",
-    "format:check": "prettier --check src/*.js",
+    "format:write": "prettier --write src/*.js __test__/*.js",
+    "format:check": "prettier --check src/*.js __test__/*.js",
     "lint": "npx eslint . -c ./.github/linters/.eslintrc.yml",
     "package": "ncc build src/index.js --license licenses.txt",
     "package:watch": "npm run package -- --watch",
