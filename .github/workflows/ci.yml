@@ -51,7 +51,7 @@ jobs:
         id: test-action
         uses: ./
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.CI_TEST_SECRET }}
 
       - name: Print Output
         id: output
