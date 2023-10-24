@@ -1,0 +1,21 @@
+name: 'Runner Label Resolver'
+description: 'Resolve labels of an organization-level runner'
+author: 'Jussi Vatjus-Anttila'
+inputs:
+  github-token:
+    description: 'GitHub token'
+    required: true
+  include-org-runners:
+    description: 'Include organization-level runners'
+    required: false
+    default: true
+  test-mode:
+    description: 'Test mode which put "test-mode" label to the output'
+    required: false
+    default: false
+outputs:
+  labels:
+    description: 'Labels of the runner'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

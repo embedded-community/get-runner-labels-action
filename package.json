@@ -1,0 +1,41 @@
+{
+  "name": "get-runner-labels-action",
+  "version": "0.1.0",
+  "description": "This action fetches the labels of the runner that is running the action",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "npm run format:write && npm run package",
+    "ci-test": "node --test",
+    "format:write": "prettier --write src/*.js __test__/*.js",
+    "format:check": "prettier --check src/*.js __test__/*.js",
+    "lint": "npx eslint . -c ./.github/linters/.eslintrc.yml",
+    "package": "ncc build src/index.js --license licenses.txt",
+    "package:watch": "npm run package -- --watch",
+    "test": "(node --test && npm run lint) || exit 1",
+    "all": "npm run format:write && npm run lint && npm run test && npm run package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/embedded-community/get-runner-labels-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/embedded-community/get-runner-labels-action/issues"
+  },
+  "homepage": "https://github.com/embedded-community/get-runner-labels-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@octokit/rest": "^20.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/preset-env": "^7.23.2",
+    "@vercel/ncc": "^0.38.1",
+    "eslint": "^8.51.0",
+    "eslint-plugin-github": "^4.10.1",
+    "prettier": "^3.0.3"
+  }
+}
