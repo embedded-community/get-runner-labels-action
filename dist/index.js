@@ -29621,6 +29621,7 @@ function filterRunnerByName(runners, runnerName) {
 async function run() {
   try {
     const token = core.getInput("github-token");
+    const includeOrgRunners = core.getInput("include-org-runners");
     const runnerName = process.env.RUNNER_NAME;
     const orgRepo = process.env.GITHUB_REPOSITORY; // in the form of owner/repo
     const [org, repo] = orgRepo.split("/");
@@ -29632,19 +29633,22 @@ async function run() {
     const octokit = new Octokit({ auth: token });
 
     core.debug(`Getting runners for ${repo}`);
-
     // get repo runners
     const repoRunners = await octokit.paginate(
       octokit.actions.listSelfHostedRunnersForRepo,
       { owner: org, repo },
     );
-    core.debug(`Got ${repoRunners.length} runners for ${repo}`);
-    // get org runners
-    const orgRunners = await octokit.paginate(
-      octokit.actions.listSelfHostedRunnersForOrg,
-      { org },
-    );
-    core.debug(`Got ${orgRunners.length} runners for ${org}`);
+    core.debug(`Got ${repoRunners.length} runners for repo: ${repo}`);
+
+    let orgRunners = [];
+    if (includeOrgRunners) {
+      // get org runners
+      orgRunners = await octokit.paginate(
+        octokit.actions.listSelfHostedRunnersForOrg,
+        { org },
+      );
+      core.debug(`Got ${orgRunners.length} runners for org:${org}`);
+    }
     // combine runners
     const allRunners = [...repoRunners, ...orgRunners];
 

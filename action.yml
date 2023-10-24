@@ -5,6 +5,10 @@ inputs:
   github-token:
     description: 'GitHub token'
     required: true
+  include-org-runners:
+    description: 'Include organization-level runners'
+    required: false
+    default: true
 outputs:
   labels:
     description: 'Labels of the runner'
