@@ -57,9 +57,10 @@ jobs:
       - name: Verify Output
         id: output
         run: |
-          # verify that the test-action output label = ["test-mode"]
           echo "Labels: ${{ steps.test-action.outputs.labels }}"
-          if [[ "${{ steps.test-action.outputs.labels }}" != "[\"test-mode\"]" ]]; then
+
+          # verify that the test-action output label = [test-mode]
+          if [[ "${{ steps.test-action.outputs.labels }}" != "[test-mode]" ]]; then
             echo "test-mode not found in labels"
             exit 1
           fi
