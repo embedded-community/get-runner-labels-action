@@ -52,7 +52,13 @@ async function run() {
       core.debug(
         `Available runners: ${allRunners.map((runner) => runner.name)}`,
       );
-      throw Error(`No runner found with the name: ${runnerName}`);
+      const testMode = core.getInput("test-mode");
+      if (testMode) {
+        core.warning("Test mode enabled.");
+        core.setOutput("labels", JSON.stringify(["test-mode"]));
+        return;
+      }
+      throw Error(`No runner found with runner name: ${runnerName}`);
     }
     core.debug(`Runner found: ${theRunner.name}`);
 
