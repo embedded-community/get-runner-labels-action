@@ -14,9 +14,9 @@ function filterRunnerByName(runners, runnerName) {
 async function run() {
   try {
     const token = core.getInput("github-token");
-    const org = process.env.GITHUB_REPOSITORY_OWNER;
     const runnerName = process.env.RUNNER_NAME;
-    const repo = process.env.GITHUB_REPOSITORY;
+    const orgRepo = process.env.GITHUB_REPOSITORY; // in the form of owner/repo
+    const [org, repo] = orgRepo.split("/");
     core.debug(
       `org: ${org}, repo: ${repo}, Runner name: ${runnerName}, token: ${token}`,
     );
