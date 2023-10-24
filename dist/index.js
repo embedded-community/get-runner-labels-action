@@ -29624,21 +29624,27 @@ async function run() {
     const org = process.env.GITHUB_REPOSITORY_OWNER;
     const runnerName = process.env.RUNNER_NAME;
     const repo = process.env.GITHUB_REPOSITORY;
-    core.debug(`${org}/${repo}, Runner name: ${runnerName}, token: ${token}`);
+    core.debug(
+      `org: ${org}, repo: ${repo}, Runner name: ${runnerName}, token: ${token}`,
+    );
 
     // create octokit client
     const octokit = new Octokit({ auth: token });
+
+    core.debug(`Getting runners for ${repo}`);
 
     // get repo runners
     const repoRunners = await octokit.paginate(
       octokit.actions.listSelfHostedRunnersForRepo,
       { owner: org, repo },
     );
+    core.debug(`Got ${repoRunners.length} runners for ${repo}`);
     // get org runners
     const orgRunners = await octokit.paginate(
       octokit.actions.listSelfHostedRunnersForOrg,
       { org },
     );
+    core.debug(`Got ${orgRunners.length} runners for ${org}`);
     // combine runners
     const allRunners = [...repoRunners, ...orgRunners];
 
@@ -29659,6 +29665,7 @@ async function run() {
     // set outputs
     core.setOutput("labels", JSON.stringify(labels));
   } catch (error) {
+    console.error(error);
     core.setFailed(error.message);
   }
 }
