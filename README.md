@@ -1,3 +1,5 @@
+[![Continuous Integration](https://github.com/embedded-community/get-runner-labels-action/actions/workflows/ci.yml/badge.svg)](https://github.com/embedded-community/get-runner-labels-action/actions/workflows/ci.yml)
+
 # get-runner-labels-action
 
 Github Action to get current runner labels. This is mostly useful for self-hosted runners.
@@ -17,7 +19,7 @@ See [this issue](https://github.com/actions/runner/issues/821) for more informat
 
 By default, this action will include all runners in the organization and all runners in the current repository. 
 If you want to limit the runners to only those in the current repository, set this to `false`.
-**NOTE**: see [github-token] 
+**NOTE**: see [github-token](#github-token)
 
 ## `github-token`
 
