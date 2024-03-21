@@ -30,7 +30,7 @@
     "@octokit/rest": "^20.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.6",
+    "@babel/core": "^7.24.3",
     "@babel/eslint-parser": "^7.22.15",
     "@babel/preset-env": "^7.23.6",
     "@vercel/ncc": "^0.38.1",
